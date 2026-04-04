@@ -24,8 +24,20 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/**").permitAll()    // open endpoints
+                        .requestMatchers(
+                                "/public/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs",
+                                "/"
+                        ).permitAll()   // open endpoints
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/swagger-ui/index.html"
+                        ).permitAll()
                         .requestMatchers("/analyst/**").hasAnyRole("ADMIN", "ANALYST")
                         .requestMatchers("/viewer/**").hasAnyRole("ADMIN", "ANALYST", "VIEWER")
                         .requestMatchers("/user/**").authenticated()

@@ -15,10 +15,6 @@ public class PublicController {
     @Autowired
     private UserService userService ;
 
-    @GetMapping("health-check")
-    public ResponseEntity<String> healthCheck(){
-        return ResponseEntity.status(HttpStatus.OK).body("Application is working properly") ;
-    }
 
     @PostMapping("signup")
     public ResponseEntity<String> signUp(@RequestBody User user){
