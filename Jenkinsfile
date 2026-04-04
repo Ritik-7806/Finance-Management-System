@@ -53,7 +53,7 @@ pipeline {
         stage('Restart Deployment') {
             steps {
                 withCredentials([file(credentialsId: 'kind-kubeconfig', variable: 'KUBECONFIG')]) {
-                sh 'kubectl rollout restart deployment lms-backend -n fms'
+                sh 'kubectl rollout restart deployment fms-backend -n fms'
                 }
             }
         }
